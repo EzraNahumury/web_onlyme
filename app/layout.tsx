@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Project Tracker | AI Engineer",
+  title: "Coreflow AI | Project Tracker",
   description: "Track and manage AI engineering projects",
 };
 
@@ -28,9 +28,13 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100">
+      <body className="noise-bg min-h-full flex flex-col bg-[#050505] text-zinc-100 relative">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 relative z-[1]">{children}</main>
+        {/* Footer */}
+        <footer className="relative z-[1] border-t border-white/5 py-6 text-center text-xs text-zinc-600">
+          <p>&copy; {new Date().getFullYear()} Coreflow AI &middot; Project Progress Tracker</p>
+        </footer>
       </body>
     </html>
   );
