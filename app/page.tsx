@@ -17,7 +17,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import type { Project, ProjectStatus } from "@/lib/types";
-import EarthGlobe from "@/components/EarthGlobe";
+import { Globe3D } from "@/components/ui/3d-globe";
 
 const statusConfig: {
   key: ProjectStatus;
@@ -122,10 +122,24 @@ export default function Home() {
     projects.filter((p) => p.status === s).length;
 
   return (
-    <div className="flex flex-1 flex-col items-center px-4">
+    <div className="relative flex flex-1 flex-col items-center px-4">
+      {/* 3D Globe - positioned behind hero, no clipping */}
+      <div className="absolute top-[50px] left-1/2 -translate-x-1/2 pointer-events-none opacity-80 z-0">
+        <div className="w-[700px] h-[700px]">
+          <Globe3D
+            markers={[]}
+            config={{
+              atmosphereColor: "#ef4444",
+              atmosphereIntensity: 15,
+              bumpScale: 3,
+              autoRotateSpeed: 0.3,
+            }}
+          />
+        </div>
+      </div>
+
       {/* Hero */}
-      <section className="relative flex w-full max-w-5xl flex-col items-center pt-20 pb-16 sm:pt-28 sm:pb-20">
-        <EarthGlobe />
+      <section className="relative z-[1] flex w-full max-w-5xl flex-col items-center pt-20 pb-16 sm:pt-28 sm:pb-20">
         <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[500px] w-[800px] bg-gradient-to-b from-red-500/8 via-transparent to-transparent rounded-full blur-3xl" />
 
         <div className="animate-fade-in relative text-center">
